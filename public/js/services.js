@@ -16,7 +16,7 @@ angular.module('myApp')
   }
 
   this.editItem = (editItem) => {
-    return $http.put(`/items`);
+    return $http.put(`/items`, editItem);
   }
 
   this.queryByRoom = (room) => {
