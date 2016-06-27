@@ -18,6 +18,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
+  console.log("req.body: ",req.body);
   Myitems.addItem(req.body)
     .then(items => {
       res.send();

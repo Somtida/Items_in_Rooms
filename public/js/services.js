@@ -8,7 +8,7 @@ angular.module('myApp')
   }
 
   this.addItem = (newItem) => {
-    return $http.post('/items');
+    return $http.post('/items', newItem);
   }
 
   this.deleteItem = (id) => {
