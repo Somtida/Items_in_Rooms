@@ -27,19 +27,19 @@ exports.getAll = () => {
   });
 }
 
-exports.queryByRoom = room => {
-  console.log("queryByRoom room: ",room);
-  return new Promise((resolve, reject) => {
-    db.query(`select * from roomitems where room = "${room}"`, function(err, items){
-      if(err){
-        reject(err);
-      }else{
-        console.log("get queryByRoom items: ",items);
-        resolve(items);
-      }
-    });
-  });
-}
+// exports.queryByRoom = room => {
+//   console.log("queryByRoom room: ",room);
+//   return new Promise((resolve, reject) => {
+//     db.query(`select * from roomitems where room = "${room}"`, function(err, items){
+//       if(err){
+//         reject(err);
+//       }else{
+//         console.log("get queryByRoom items: ",items);
+//         resolve(items);
+//       }
+//     });
+//   });
+// }
 
 exports.deleteItem = (id) => {
   return new Promise((resolve, reject) => {

@@ -1,8 +1,8 @@
 
 'use strict';
 
-angular.module('myApp')
-.service('Myitems', function($http){
+
+app.service('Myitems', function($http){
   this.getAll = () => {
     return $http.get('/items');
   }
@@ -19,7 +19,7 @@ angular.module('myApp')
     return $http.put(`/items`, editItem);
   }
 
-  this.queryByRoom = (room) => {
-    return $http.get(`/items/${room}/queryByRoom`);
-  }
+  // this.queryByRoom = (room) => {
+  //   return $http.get(`/items/${room}/queryByRoom`);
+  // }
 })

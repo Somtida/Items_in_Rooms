@@ -49,6 +49,7 @@
       <label>room :  </label>
       <input type="text" ng-model="editItem.room" required>
       <button class="btn btn-success">SAVE</button>
+      <!-- <button class="btn btn-default">CANCEL</button> -->
     </form>
     </div>
 
@@ -63,16 +64,16 @@
         </div>
         <div class="col-xs-3 text-right">
           <label>Search by: </label>
-          <select ng-change=" queryByRoom()" ng-options="item.room for item in items" ng-model="selected">select room</select>
-          {{seleted}}
-          <!-- <select>
-            <option ng-repeat='item in items track by $index' ng-value="'item.room'">{{item.room}}</option>
-            <option value="bedroom">bedroom</option>
+          <select ng-options="item.room for item in items" ng-model="searchRoom">select room</select>
+          <!-- <select ng-change=" queryByRoom()" ng-options="item.room for item in items" ng-model="searchRoom">select room</select> -->
+          <!-- <select ng-change=" queryByRoom()"> -->
+            <!-- <option ng-repeat='item in items track by $index' ng-value="'item.room'">{{item.room}}</option> -->
+            <!-- <option value="bedroom">bedroom</option>
             <option value="livingroom">livingroom</option>
             <option value="kitchen">kitchen</option>
             <option value="bathroom">bathroom</option>
-          </select>
-          <button class="btn btn-info" type="button" ng-click="queryByRoom()"></button> -->
+          </select> -->
+          <!-- <button class="btn btn-info" type="button" ng-click="queryByRoom()"></button> -->
         </div>
         <div class="col-xs-3 text-right">
           <input type="text" ng-model="searchText" class="searchTextArea" placeholder="search" >
@@ -93,7 +94,7 @@
         </thead>
         <tbody>
 
-          <tr ng-repeat='item in items | orderBy: dataValue | filter:searchText track by $index'>
+          <tr ng-repeat='item in items | orderBy: dataValue | filter:searchText | filter:searchRoom track by $index'>
             <td>{{item.room }}</td>
             <td>{{item.name }}</td>
             <td>{{item.amount | currency}}</td>

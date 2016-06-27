@@ -1,8 +1,7 @@
 'use strict';
 
 
-angular.module('myApp')
-.controller('mainCtrl', function($scope, Myitems){
+app.controller('mainCtrl', function($scope, Myitems){
 
   $scope.items = [];
 
@@ -75,13 +74,23 @@ angular.module('myApp')
 
   $scope.queryByRoom = () => {
     console.log($scope.selected.room);
-    Myitems.queryByRoom($scope.selected.room)
-      .then(res => {
-        $scope.items = res.data;
-      })
-      .catch(err => {
-        console.log("err: ", err);
-      })
+    let room = $scope.selected.room;
+    // Myitems.queryByRoom($scope.selected.room)
+    //   .then(res => {
+    //     $scope.items = res.data;
+    //   })
+    //   .catch(err => {
+    //     console.log("err: ", err);
+    //   })
+    app.filter('searchRoom', function() { // <-- dep. injecting
+      console.log("app.filter");
+      return function(inputStr) {
+        if(typeof inputStr !== 'string' || !inputStr.length) return;
+
+        console.log(inputStr);
+      };
+    });
+
   }
 
   $scope.$watch(function() {
