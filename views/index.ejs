@@ -42,12 +42,12 @@
 
     <div class="alert alert-info" ng-show="Editing.length">
       <label>Item: </label>
-      <input type="text" class="editInput" placeholder="item's name" ng-model='newItem.name' required>
+      <input type="text" class="editInput" placeholder="{{editObj.name}}" ng-model='editItem.name' required>
       <label>amount :  </label>
-      <input type="number" placeholder="amount" ng-model="newItem.amount" step='0.01' min=0 required>
+      <input type="number" placeholder="{{editObj.amount}}" ng-model="editItem.amount" step='0.01' min=0 required>
       <label>room :  </label>
-      <input type="text" placeholder="room" ng-model="newItem.room" required>
-      <button class="btn btn-success">SAVE</button>
+      <input type="text" placeholder="{{editObj.room}}" ng-model="editItem.room" required>
+      <button ng-click="editItem()" class="btn btn-success">SAVE</button>
     </div>
 
     <div class="jumbotron showDataArea">

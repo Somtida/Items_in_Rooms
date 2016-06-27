@@ -54,6 +54,20 @@ exports.deleteItem = (id) => {
   });
 }
 
+exports.editItem = editItemObj => {
+  editItemObj.createdAt = new Date();
+  return new Promise((resolve, reject) => {
+  db.query(`update roomitems set ? where id="${editItemObj.id}"`, newItemObj, function(err, items){
+      if(err){
+        reject(err);
+      }else{
+        resolve();
+      }
+    })
+
+  })
+}
+
 exports.addItem = newItemObj => {
   newItemObj.id = uuid();
   newItemObj.createdAt = new Date();

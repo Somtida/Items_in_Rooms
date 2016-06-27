@@ -43,18 +43,23 @@ angular.module('myApp')
 
   }
 
-  $scope.editIt = (index) => {
-    // swal({title: "Tobi is sexier", text: "take a pic in the club"});
-    $scope.Editing = ['doing'];
-    console.log("editIt obj: ",$scope.items[index]);
-    let id = $scope.items[index].id;
-    Myitems.editItem(id)
+  $scope.editItem = () => {
+    Myitems.editItem(editItem)
       .then(res => {
         console.log("edited");
       })
       .catch(err => {
         console.log("err: ", err);
       })
+  }
+
+  $scope.editIt = (index) => {
+    // swal({title: "Tobi is sexier", text: "take a pic in the club"});
+    $scope.Editing = ['doing'];
+    console.log("editIt obj: ",$scope.items[index]);
+    $scope.editObj = $scope.items[index];
+
+
 
 
   }

@@ -40,7 +40,7 @@ router.delete('/:id', (req, res) => {
 
 
 router.put('/', (req, res) => {
-  Myitems.addItem(req.body)
+  Myitems.editItem(req.body)
     .then(items => {
       res.send();
     })

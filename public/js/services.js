@@ -15,8 +15,8 @@ angular.module('myApp')
     return $http.delete(`/items/${id}`);
   }
 
-  this.editItem = (id) => {
-    return $http.put(`/items/${id}`);
+  this.editItem = (editItem) => {
+    return $http.put(`/items`);
   }
 
   this.queryByRoom = (room) => {
