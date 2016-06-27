@@ -40,14 +40,14 @@
       </div>
       <hr>
 
-    <div class="alert alert-info" ng-show="Editing.length">
-      <form ng-submit="editItem()">
+    <div class="alert alert-warning" ng-show="editing">
+      <form ng-submit="saveEdit()">
       <label>Item: </label>
-      <input type="text" class="editInput" placeholder="{{editObj.name}}" ng-model='editItem.name' required>
+      <input type="text" class="editInput" ng-model='editItem.name' required>
       <label>amount :  </label>
-      <input type="number" placeholder="{{editObj.amount}}" ng-model="editItem.amount" step='0.01' min=0 required>
+      <input type="number" ng-model="editItem.amount" step='0.01' min=0 required>
       <label>room :  </label>
-      <input type="text" placeholder="{{editObj.room}}" ng-model="editItem.room" required>
+      <input type="text" ng-model="editItem.room" required>
       <button class="btn btn-success">SAVE</button>
     </form>
     </div>
@@ -63,7 +63,7 @@
         </div>
         <div class="col-xs-3 text-right">
           <label>Search by: </label>
-          <select ng-change="queryByRoom()" ng-options="item as item.room for item in items" ng-model="selected"></select>
+          <select ng-change=" queryByRoom()" ng-options="item.room for item in items" ng-model="selected">select room</select>
           {{seleted}}
           <!-- <select>
             <option ng-repeat='item in items track by $index' ng-value="'item.room'">{{item.room}}</option>

@@ -4,6 +4,8 @@
 angular.module('myApp')
 .controller('mainCtrl', function($scope, Myitems){
 
+  $scope.items = [];
+
   Myitems.getAll()
     .then(res => {
       // console.log("res.data", res.data);
@@ -21,6 +23,7 @@ angular.module('myApp')
     Myitems.addItem(newItem)
       .then(res => {
         console.log("added");
+        $scope.items = res.data;
       })
       .catch(err => {
         console.log("err: ", err);
@@ -43,21 +46,26 @@ angular.module('myApp')
 
   }
 
-  $scope.editItem = () => {
-    Myitems.editItem(editItem)
+  $scope.saveEdit = () => {
+    Myitems.editItem($scope.editItem)
       .then(res => {
         console.log("edited");
+        $scope.items = res.data;
       })
       .catch(err => {
         console.log("err: ", err);
       })
+
+    $scope.editing = false;
   }
 
   $scope.editIt = (index) => {
     // swal({title: "Tobi is sexier", text: "take a pic in the club"});
-    $scope.Editing = ['doing'];
+    $scope.editing = true;
+
     console.log("editIt obj: ",$scope.items[index]);
-    $scope.editObj = $scope.items[index];
+    // $scope.editItem = $scope.items[index];
+    $scope.editItem = angular.copy($scope.items[index]);
 
 
 

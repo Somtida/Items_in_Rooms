@@ -61,7 +61,10 @@ exports.editItem = editItemObj => {
       if(err){
         reject(err);
       }else{
-        resolve();
+        db.query('select * from roomitems', function(err, items){
+          if(err) return reject(err);
+          resolve(items);
+        })
       }
     })
 
@@ -76,7 +79,10 @@ exports.addItem = newItemObj => {
       if(err){
         reject(err);
       }else{
-        resolve();
+        db.query('select * from roomitems', function(err, items){
+          if(err) return reject(err);
+          resolve(items);
+        });
       }
     })
 

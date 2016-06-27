@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
   console.log("req.body: ",req.body);
   Myitems.addItem(req.body)
     .then(items => {
-      res.send();
+      res.send(items);
     })
     .catch(err => {
       res.status(400).send(err);
@@ -43,7 +43,7 @@ router.delete('/:id', (req, res) => {
 router.put('/', (req, res) => {
   Myitems.editItem(req.body)
     .then(items => {
-      res.send();
+      res.send(items);
     })
     .catch(err => {
       res.status(400).send(err);
