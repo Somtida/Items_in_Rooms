@@ -2,7 +2,9 @@
   "name": "fullstack-template",
   "description": "",
   "main": "app.js",
-  "author": "",
+  "authors": [
+    "Somtida <somtida.com>"
+  ],
   "license": "ISC",
   "homepage": "",
   "ignore": [
