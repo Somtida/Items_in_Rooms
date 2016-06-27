@@ -41,13 +41,15 @@
       <hr>
 
     <div class="alert alert-info" ng-show="Editing.length">
+      <form ng-submit="editItem()">
       <label>Item: </label>
       <input type="text" class="editInput" placeholder="{{editObj.name}}" ng-model='editItem.name' required>
       <label>amount :  </label>
       <input type="number" placeholder="{{editObj.amount}}" ng-model="editItem.amount" step='0.01' min=0 required>
       <label>room :  </label>
       <input type="text" placeholder="{{editObj.room}}" ng-model="editItem.room" required>
-      <button ng-click="editItem()" class="btn btn-success">SAVE</button>
+      <button class="btn btn-success">SAVE</button>
+    </form>
     </div>
 
     <div class="jumbotron showDataArea">

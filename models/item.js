@@ -57,7 +57,7 @@ exports.deleteItem = (id) => {
 exports.editItem = editItemObj => {
   editItemObj.createdAt = new Date();
   return new Promise((resolve, reject) => {
-  db.query(`update roomitems set ? where id="${editItemObj.id}"`, newItemObj, function(err, items){
+  db.query(`update roomitems set ? where id="${editItemObj.id}"`, editItemObj, function(err, items){
       if(err){
         reject(err);
       }else{
