@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/bower_components/angular/angular.js"></script>
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="/js/module.js"></script>
+  <script src="/js/controllers.js"></script>
+  <script src="/js/services.js"></script>
+</head>
+<body ng-app='myApp' ng-controller='mainCtrl'>
+  <div class="container">
+    <div class="jumbotron subject text-center">
+      <h1>MY ITEMS LIST</h1>
+
+    </div>
+
+    <div class="alert alert-info formArea">
+      <form ng-submit="addItem()">
+
+        <div class="form-group">
+          <p>Item</p>
+          <input type="text" class="form-control" placeholder="item's name" ng-model='newItem.name' required>
+        </div>
+        <div>
+          <span>
+            <div class="form-group text-center">
+              <label>amount :  </label>
+              <input type="number" placeholder="amount" ng-model="newItem.amount" step='0.01' min=0 required>
+              <label>room :  </label>
+              <input type="text" placeholder="room" ng-model="newItem.room" required>
+              <button class="btn btn-success">Submit</button>
+            </div>
+          </span>
+        </div>
+      </form>
+      </div>
+      <hr>
+
+    <div class="alert alert-info" ng-show="Editing.length">
+      <label>Item: </label>
+      <input type="text" class="editInput" placeholder="item's name" ng-model='newItem.name' required>
+      <label>amount :  </label>
+      <input type="number" placeholder="amount" ng-model="newItem.amount" step='0.01' min=0 required>
+      <label>room :  </label>
+      <input type="text" placeholder="room" ng-model="newItem.room" required>
+      <button class="btn btn-success">SAVE</button>
+    </div>
+
+    <div class="jumbotron showDataArea">
+      <div class="row">
+        <div class="col-xs-6">
+          <pre><ng-pluralize count="items.length"
+              when="{'0': 'You have no item.',
+                      '1': 'You have 1 items.',
+                      'other': 'You have {{items.length}} items.'}">
+          </ng-pluralize></pre>
+        </div>
+        <div class="col-xs-3 text-right">
+          <label>Search by: </label>
+          <select ng-change="queryByRoom()" ng-options="item as item.room for item in items" ng-model="selected"></select>
+          {{seleted}}
+          <!-- <select>
+            <option ng-repeat='item in items track by $index' ng-value="'item.room'">{{item.room}}</option>
+            <option value="bedroom">bedroom</option>
+            <option value="livingroom">livingroom</option>
+            <option value="kitchen">kitchen</option>
+            <option value="bathroom">bathroom</option>
+          </select>
+          <button class="btn btn-info" type="button" ng-click="queryByRoom()"></button> -->
+        </div>
+        <div class="col-xs-3 text-right">
+          <input type="text" ng-model="searchText" class="searchTextArea" placeholder="search" >
+        </div>
+      </div>
+
+      <br>
+
+      <table class="table" ng-show="items.length">
+        <thead>
+          <tr>
+            <th class="clickable" ng-click="dataValue = 'name'">Room</th>
+            <th class="clickable" ng-click="dataValue = 'name'">Name</th>
+            <th>Amount</th>
+            <th class="clickable" ng-click="dataValue = 'date'">Date</th>
+            <th>Option</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr ng-repeat='item in items | orderBy: dataValue | filter:searchText track by $index'>
+            <td>{{item.room }}</td>
+            <td>{{item.name }}</td>
+            <td>{{item.amount | currency}}</td>
+            <td>{{item.createdAt | date:"MM/dd/yyyy 'at' h:mma" }}</td>
+            <td>
+              <button class="btn btn-warning" type="button" ng-click="editIt($index)">EDIT</button>
+              <button class="btn btn-danger" type="button" ng-click="deleteIt($index)">X</button>
+
+            </td>
+          </tr>
+        </tbody>
+          <tfoot>
+          <td></td>
+          <td>TOTALS:</td>
+          <td>{{total | currency}}</td>
+          <td></td>
+          <td></td>
+        </tfoot>
+      </table>
+      </div>
+
+
+  </div>
+
+
+</body>
+
+</html>
